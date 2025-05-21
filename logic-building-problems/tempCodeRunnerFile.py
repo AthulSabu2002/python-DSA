@@ -1,1 +1,1 @@
-len(arr)-1
+word
