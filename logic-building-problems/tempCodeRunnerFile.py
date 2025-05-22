@@ -1,1 +1,1 @@
-word
+print("*", nums)
