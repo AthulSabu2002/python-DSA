@@ -2,25 +2,24 @@ from typing import List
 
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        
-        if not matrix or not matrix[0]:
-            return False
-
         rows, cols = len(matrix), len(matrix[0])
-        left, right = 0, rows * cols - 1
 
-        while left <= right:
-            mid = (left + right) // 2
-            row, col = divmod(mid, cols)
-            mid_value = matrix[row][col]
+        top = 0
+        bottom = (rows * cols)  - 1
+        
+        while top <= bottom:
+            middle_index = (top + bottom) // 2
 
-            if mid_value == target:
+            mid_row = middle_index // cols
+            mid_col = middle_index % cols
+
+            if matrix[mid_row][mid_col] == target:
                 return True
-            elif mid_value < target:
-                left = mid + 1
+            elif matrix[mid_row][mid_col] > target:
+                bottom = middle_index - 1
             else:
-                right = mid - 1
-
+                top = middle_index + 1
+        
         return False
     
 if __name__ == "__main__":
